@@ -87,7 +87,8 @@ onMounted(() => {
       <header class="bg-white border-b border-gray-100 px-4 md:px-6 py-3.5 flex justify-between items-center gap-3">
         <h1 class="text-base md:text-lg font-bold text-gray-800">{{ currentLabel }}</h1>
         <div class="flex items-center gap-3 shrink-0">
-          <a href="/" target="_blank" class="text-sm text-primary hover:underline">查看居民端 ↗</a>
+          <!-- 用相对路径，兼容 GitHub Pages 子路径部署（/仓库名/admin.html → /仓库名/index.html） -->
+          <a href="index.html" target="_blank" rel="noopener" class="text-sm text-primary hover:underline">查看居民端 ↗</a>
           <button class="lg:hidden text-sm px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600" @click="logout">退出</button>
         </div>
       </header>
