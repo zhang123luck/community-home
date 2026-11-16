@@ -127,9 +127,9 @@ async function submitSuggestion(payload) {
         v-else-if="tab === 'service'"
         :service-key="serviceKey"
         @switch-service="serviceKey = $event"
-        @publish="showToast('发布功能演示：' + serviceKey)"
+        @toast="showToast"
       />
-      <CoopPage v-else-if="tab === 'coop'" @publish="showToast('推荐商户入驻（演示）')" />
+      <CoopPage v-else-if="tab === 'coop'" @toast="showToast" />
       <ProfilePage v-else />
     </main>
 

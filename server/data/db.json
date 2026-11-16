@@ -89,7 +89,7 @@
         }
       ],
       "deadline": "3 天 12 小时",
-      "status": "closed",
+      "status": "open",
       "createdAt": "2026-11-12T02:00:00.000Z"
     }
   ],
@@ -109,6 +109,242 @@
       "status": "处理中",
       "reply": "已安排保安夜间 22:00 后加密巡逻。",
       "createdAt": "2026-11-14T13:00:00.000Z"
+    }
+  ],
+  "demands": [
+    {
+      "id": "dm-1",
+      "type": "errand",
+      "icon": "🙋",
+      "title": "急需帮忙取处方药",
+      "who": "5栋 张女士",
+      "time": "5分钟前",
+      "tags": [
+        "紧急"
+      ],
+      "createdAt": "2026-11-16T01:55:00.000Z"
+    },
+    {
+      "id": "dm-2",
+      "type": "errand",
+      "icon": "🙋",
+      "title": "帮忙去超市代购生活用品",
+      "who": "1栋 刘先生",
+      "time": "2小时前",
+      "tags": [
+        "有偿"
+      ],
+      "createdAt": "2026-11-16T00:00:00.000Z"
+    },
+    {
+      "id": "dm-3",
+      "type": "errand",
+      "icon": "🙋",
+      "title": "代取快递（大件冰箱）",
+      "who": "3栋 王先生",
+      "time": "3小时前",
+      "tags": [
+        "有偿"
+      ],
+      "createdAt": "2026-11-15T23:00:00.000Z"
+    },
+    {
+      "id": "dm-4",
+      "type": "errand",
+      "icon": "🧓",
+      "title": "帮忙打印孩子作业资料",
+      "who": "2栋 李奶奶",
+      "time": "5小时前",
+      "tags": [
+        "免费"
+      ],
+      "createdAt": "2026-11-15T20:00:00.000Z"
+    },
+    {
+      "id": "dm-5",
+      "type": "child",
+      "icon": "👶",
+      "title": "临时托管4岁男孩3小时",
+      "who": "4栋 陈妈妈",
+      "time": "15分钟前",
+      "tags": [
+        "紧急"
+      ],
+      "createdAt": "2026-11-16T01:40:00.000Z"
+    },
+    {
+      "id": "dm-6",
+      "type": "child",
+      "icon": "👶",
+      "title": "周末两天托管7岁女孩",
+      "who": "6栋 赵先生",
+      "time": "1小时前",
+      "tags": [
+        "有偿"
+      ],
+      "createdAt": "2026-11-16T01:00:00.000Z"
+    },
+    {
+      "id": "dm-7",
+      "type": "child",
+      "icon": "👶",
+      "title": "放学后接孩子并辅导作业",
+      "who": "1栋 刘女士",
+      "time": "3小时前",
+      "tags": [
+        "有偿"
+      ],
+      "createdAt": "2026-11-15T23:00:00.000Z"
+    },
+    {
+      "id": "dm-8",
+      "type": "medical",
+      "icon": "🧓",
+      "title": "陪同独居老人心内科复查",
+      "who": "6栋 陈先生",
+      "time": "30分钟前",
+      "tags": [
+        "紧急"
+      ],
+      "createdAt": "2026-11-16T01:30:00.000Z"
+    },
+    {
+      "id": "dm-9",
+      "type": "medical",
+      "icon": "🧓",
+      "title": "年度体检陪同",
+      "who": "4栋 林女士",
+      "time": "3小时前",
+      "tags": [
+        "普通"
+      ],
+      "createdAt": "2026-11-15T23:00:00.000Z"
+    },
+    {
+      "id": "dm-10",
+      "type": "medical",
+      "icon": "🧓",
+      "title": "术后复查陪同",
+      "who": "1栋 何奶奶",
+      "time": "昨天",
+      "tags": [
+        "有偿"
+      ],
+      "createdAt": "2026-11-15T02:00:00.000Z"
+    },
+    {
+      "id": "dm-11",
+      "type": "help",
+      "icon": "📚",
+      "title": "求三年级数学辅导",
+      "who": "7栋 周妈妈",
+      "time": "40分钟前",
+      "tags": [
+        "普通"
+      ],
+      "category": "教育辅导",
+      "createdAt": "2026-11-16T01:20:00.000Z"
+    },
+    {
+      "id": "dm-12",
+      "type": "help",
+      "icon": "🐱",
+      "title": "出差三天，帮忙喂猫",
+      "who": "2栋 吴先生",
+      "time": "2小时前",
+      "tags": [
+        "有偿"
+      ],
+      "category": "宠物照看",
+      "createdAt": "2026-11-16T00:00:00.000Z"
+    },
+    {
+      "id": "dm-13",
+      "type": "help",
+      "icon": "🪛",
+      "title": "帮忙组装宜家衣柜",
+      "who": "5栋 郑先生",
+      "time": "4小时前",
+      "tags": [
+        "有偿"
+      ],
+      "category": "其他",
+      "createdAt": "2026-11-15T22:00:00.000Z"
+    }
+  ],
+  "merchants": [
+    {
+      "id": "mc-1",
+      "icon": "🎨",
+      "name": "佳美装饰",
+      "category": "装修装饰",
+      "rating": 4.8,
+      "desc": "专注家装15年，小区已服务30+户业主，口碑良好",
+      "badges": [
+        "certified",
+        "recommend"
+      ],
+      "stats": {
+        "services": 56,
+        "votes": 42,
+        "complaints": 1
+      },
+      "contact": "",
+      "createdAt": "2026-11-01T02:00:00.000Z"
+    },
+    {
+      "id": "mc-2",
+      "icon": "🧹",
+      "name": "安心家政",
+      "category": "家政保洁",
+      "rating": 4.6,
+      "desc": "专业保洁团队，提供日常保洁、深度清洁、开荒保洁等服务",
+      "badges": [
+        "certified"
+      ],
+      "stats": {
+        "services": 48,
+        "votes": 35,
+        "complaints": 0
+      },
+      "contact": "",
+      "createdAt": "2026-11-03T02:00:00.000Z"
+    },
+    {
+      "id": "mc-3",
+      "icon": "🚚",
+      "name": "顺达搬家",
+      "category": "搬家运输",
+      "rating": 4.3,
+      "desc": "居民推荐入驻中，正在等待社区投票公示",
+      "badges": [
+        "pending"
+      ],
+      "stats": {
+        "services": 12,
+        "votes": 9,
+        "complaints": 0
+      },
+      "contact": "",
+      "createdAt": "2026-11-10T02:00:00.000Z"
+    },
+    {
+      "id": "mc-4",
+      "icon": "⚠️",
+      "name": "某装修公司",
+      "category": "装修装饰",
+      "rating": 2.1,
+      "desc": "因多次收到居民投诉（施工扰民、增项收费），已被社区拉黑公示",
+      "badges": [
+        "blocked"
+      ],
+      "stats": {
+        "services": 15,
+        "votes": 3,
+        "complaints": 12
+      },
+      "contact": "",
+      "createdAt": "2026-11-05T02:00:00.000Z"
     }
   ]
 }

@@ -261,6 +261,114 @@ app.patch('/api/suggestions/:id', auth, (req, res) => {
 })
 
 // ------------------------------------------------------------
+// 邻里服务需求（跑腿 / 看护 / 就医 / 互助）
+// 居民发布无需登录，列表按类目查询
+// ------------------------------------------------------------
+const DEMAND_TYPES = ['errand', 'child', 'medical', 'help']
+const DEMAND_ICONS = { errand: '🏃', child: '👶', medical: '🏥', help: '🤝' }
+const HELP_CATEGORIES = ['教育辅导', '宠物照看', '其他']
+
+app.get('/api/demands', (req, res) => {
+  const { type } = req.query
+  let list = readDB().demands || []
+  if (type) list = list.filter(d => d.type === type)
+  res.json(list)
+})
+
+app.post('/api/demands', (req, res) => {
+  const { type, title, desc, who, contact, urgent, paid, category, reward } = req.body || {}
+  if (!DEMAND_TYPES.includes(type)) return res.status(400).json({ error: '未知的服务类目' })
+  if (!title || !title.trim()) return res.status(400).json({ error: '请填写需求标题' })
+  if (type === 'help' && !HELP_CATEGORIES.includes(category)) {
+    return res.status(400).json({ error: '请选择互助分类' })
+  }
+
+  const tags = urgent ? ['紧急'] : [paid ? '有偿' : '免费']
+  const db = readDB()
+  db.demands = db.demands || []
+  const item = {
+    id: uid('dm'),
+    type,
+    icon: DEMAND_ICONS[type],
+    title: title.trim(),
+    desc: (desc || '').trim(),
+    who: (who || '').trim() || '匿名邻居',
+    contact: (contact || '').trim(),
+    reward: paid ? Number(reward) || 0 : 0,
+    tags,
+    category: type === 'help' ? category : '',
+    status: '待接单',
+    time: '刚刚',
+    createdAt: new Date().toISOString()
+  }
+  db.demands.unshift(item)
+  writeDB(db)
+  res.status(201).json(item)
+})
+
+// 接单（居民点击「我来帮忙」）
+app.post('/api/demands/:id/take', (req, res) => {
+  const db = readDB()
+  const item = (db.demands || []).find(d => d.id === req.params.id)
+  if (!item) return res.status(404).json({ error: '需求不存在' })
+  if (item.status === '已接单') return res.status(400).json({ error: '该需求已被接单' })
+  item.status = '已接单'
+  writeDB(db)
+  res.json(item)
+})
+
+// ------------------------------------------------------------
+// 社区认证合作商户：居民推荐入驻 + 投票支持
+// ------------------------------------------------------------
+const MERCHANT_ICONS = {
+  装修装饰: '🎨', 家政保洁: '🧹', 搬家运输: '🚚', 家电维修: '🔧',
+  教育培训: '📚', 餐饮外卖: '🍱', 美容美发: '💇', 其他: '🏪'
+}
+
+app.get('/api/merchants', (req, res) => {
+  res.json(readDB().merchants || [])
+})
+
+app.post('/api/merchants', (req, res) => {
+  const { name, category, desc, reason, contact } = req.body || {}
+  if (!name || !name.trim()) return res.status(400).json({ error: '请填写商户名称' })
+  if (!category || !category.trim()) return res.status(400).json({ error: '请选择商户类目' })
+  const db = readDB()
+  db.merchants = db.merchants || []
+  const item = {
+    id: uid('mc'),
+    icon: MERCHANT_ICONS[category] || '🏪',
+    name: name.trim(),
+    category: category.trim(),
+    rating: 0,
+    desc: (desc || '').trim(),
+    reason: (reason || '').trim(),
+    contact: (contact || '').trim(),
+    badges: ['pending'],
+    stats: { services: 0, votes: 0, complaints: 0 },
+    createdAt: new Date().toISOString()
+  }
+  db.merchants.unshift(item)
+  writeDB(db)
+  res.status(201).json(item)
+})
+
+// 居民投票支持待投票商户（满 10 票转为已认证）
+app.post('/api/merchants/:id/vote', (req, res) => {
+  const db = readDB()
+  const item = (db.merchants || []).find(m => m.id === req.params.id)
+  if (!item) return res.status(404).json({ error: '商户不存在' })
+  if (item.badges.includes('blocked')) return res.status(400).json({ error: '该商户已拉黑，不可投票' })
+  if (item.badges.includes('certified')) return res.status(400).json({ error: '该商户已认证' })
+  item.stats.votes += 1
+  if (item.stats.votes >= 10) {
+    item.badges = ['certified', 'recommend']
+  }
+  writeDB(db)
+  res.json(item)
+})
+
+// ------------------------------------------------------------
 // 静态资源：生产环境把 vite 打包产物（site 目录）一起托管
 // 这样居民端小程序、管理后台、接口全部跑在同一个端口上
 // ------------------------------------------------------------
